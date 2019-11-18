@@ -7,7 +7,7 @@ use HamidAtyabi\OAuth2Client\Entities\Token;
  * Email: atyabi.hamid@yahoo.com
  * Website: www.atyabi.com
  */
-class TokenResponse{
+class TokenResponse implements \JsonSerializable{
     private $code;
     private $message;
     private $token;
@@ -58,6 +58,15 @@ class TokenResponse{
     }
 
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'tokenResponse' => [
+                'code' => $this->code,
+                'message' => $this->message,
+                'token' => $this->token
+            ]
+        ];
+    }
 
 }

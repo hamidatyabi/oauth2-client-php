@@ -6,7 +6,7 @@ namespace HamidAtyabi\OAuth2Client\Models;
  * Email: atyabi.hamid@yahoo.com
  * Website: www.atyabi.com
  */
-class Response{
+class Response implements \JsonSerializable{
     private $code;
     private $message;
     private $result;
@@ -53,7 +53,16 @@ class Response{
         $this->result = $result;
     }
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'response' => [
+                'code' => $this->code,
+                'message' => $this->message,
+                'result' => $this->result
+            ]
+        ];
+    }
 
 
 }

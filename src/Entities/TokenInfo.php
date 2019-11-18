@@ -6,7 +6,7 @@ namespace HamidAtyabi\OAuth2Client\Entities;
  * Email: atyabi.hamid@yahoo.com
  * Website: www.atyabi.com
  */
-class TokenInfo{
+class TokenInfo implements \JsonSerializable{
     private $userId;
     private $username;
     private $clientId;
@@ -97,5 +97,19 @@ class TokenInfo{
     }
 
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'tokenInfo' => [
+                'userId' => $this->userId,
+                'username' => $this->username,
+                'clientId' => $this->clientId,
+                'resources' => $this->resources,
+                'authorities' => $this->authorities,
+                'scopes' => $this->scopes,
+                'active' => $this->active,
+                'expire' => $this->expire
+            ]
+        ];
+    }
 }

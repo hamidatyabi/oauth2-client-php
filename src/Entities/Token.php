@@ -6,7 +6,7 @@ namespace HamidAtyabi\OAuth2Client\Entities;
  * Email: atyabi.hamid@yahoo.com
  * Website: www.atyabi.com
  */
-class Token{
+class Token implements \JsonSerializable{
     private $accessToken;
     private $tokenType;
     private $refreshToken;
@@ -77,7 +77,19 @@ class Token{
     }
 
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'token' => [
+                'accessToken' => $this->accessToken,
+                'tokenType' => $this->tokenType,
+                'refreshToken' => $this->refreshToken,
+                'expiresIn' => $this->expiresIn,
+                'scope' => $this->scope,
+                'userId' => $this->userId
+            ]
+        ];
+    }
 
 
 }

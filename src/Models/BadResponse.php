@@ -6,7 +6,7 @@ namespace HamidAtyabi\OAuth2Client\Models;
  * Email: atyabi.hamid@yahoo.com
  * Website: www.atyabi.com
  */
-class BadResponse{
+class BadResponse implements \JsonSerializable{
     private $error;
     private $description;
     
@@ -42,5 +42,13 @@ class BadResponse{
         $this->description = $description;
     }
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'badResponse' => [
+                'error' => $this->error,
+                'description' => $this->description
+            ]
+        ];
+    }
 }
